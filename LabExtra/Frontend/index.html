@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon.png">
+
+	<title>Lab 10 | A. Gálvez</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Latest Fontawesome -->
+	<script src="https://kit.fontawesome.com/781d6ef3e2.js" crossorigin="anonymous"></script>
+	
+<script>
+	const apiSet = () => {
+	var input = document.getElementById("myInput").value;
+	var endpoint = "https://clzkr8khla.execute-api.us-east-2.amazonaws.com/v1/?pulse=f";
+	var url = endpoint.concat(input);
+    fetch(url)
+      .then((response) => response.text())
+      .then((json) => {
+        console.log(json);
+		document.getElementById("lblResponse").innerHTML = json;
+		});
+    };
+	
+	const apiGet = () => {
+	var endpoint = "https://clzkr8khla.execute-api.us-east-2.amazonaws.com/v1/?pulse=q";
+    fetch(endpoint)
+      .then((response) => response.text())
+      .then((json) => {
+        console.log(json);
+		document.getElementById("lblResponse").innerHTML = json;
+		});
+    };
+</script> 
+</head>
+<body style="
+	background: linear-gradient(to bottom, white, cyan);
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;">
+	<div class="container-fluid">
+		<h3 class="text-center py-3">LABORATORIO 10</h3>
+		<h5 class="text-center py-3">Andres S. Gálvez A.<br>Carné: 1024718</h5>
+	</div>
+
+	<div class="container-fluid">
+		<div class="container">
+			<ul class="nav nav-justified py-2 nav-pills">
+				<li class="nav-item">
+					<a class="nav-link active" href="index.html">Inicio</a>
+				</li>
+			</ul>
+		</div>		
+	</div>
+
+	<div class="container-fluid">
+		<div class="container py-5">
+			<form>
+				<label>Entrada</label><br>
+				<input prepend-icon="ni ni-lock-circle-open" type="text" id="myInput" name="myInput" placeholder="Ingresar entrada"><br><br>
+			</form>
+			<button class="text-white" type="submit" onclick="apiSet()" style="border-radius: 5px 5px 5px 5px;
+                  background: #5A7CFF; border-color: #5A7CFF;">Enviar</button><br><br>
+			<button class="text-white" type="submit" onclick="apiGet()" style="border-radius: 5px 5px 5px 5px;
+                  background: #5A7CFF; border-color: #5A7CFF;">Consultar</button><br><br>
+			<div id="content">
+				<label><b>Raspberry: </b></label>
+				<label id="lblResponse"></label>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
